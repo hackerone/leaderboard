@@ -1,0 +1,48 @@
+<head>
+  <title>Leaderboard</title>
+</head>
+
+<body>
+  <div id="outer">
+    {{> leaderboard}}
+  </div>
+</body>
+
+<template name="leaderboard">
+
+  <input type="button" class="sortName" value="Sort By Name" />
+
+  <input type="button" class="sortScore" value="Sort by Score" />
+  <input type="button" class="randomizeScore" value="Randomize Score" />
+  <br>
+  <form class='addForm'>
+  <input type="text" class="scientistName" id="scientistName" placeholder="Scientist Name"> 
+  <input type="text" class="scientistScore" id="scientistScore" placeholder="Scientist Score"> 
+  <input type="submit" class="add" value="Add Scientist" />
+  </form>
+  <div class="leaderboard">
+    {{#each players}}
+      {{> player}}
+    {{/each}}
+  </div>
+
+  {{#if selected_name}}
+  <div class="details">
+    <div class="name">{{selected_name}}</div>
+    <input type="button" class="inc" value="Give 5 points" />
+     <input type="button" class="remove" value="Remove Scientist" />
+  </div>
+  {{/if}}
+
+  {{#unless selected_name}}
+  <div class="none">Click a player to select</div>
+  {{/unless}}
+</template>
+
+<template name="player">
+  <div class="player {{selected}}">
+    <span class="name">{{name}}</span>
+    <span class="score">{{score}}</span>
+  </div>
+</template>
+
